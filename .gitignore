@@ -1,0 +1,18 @@
+# Verilog simulation output files
+*.vcd       # waveform files
+*.out       # some tools use this for output
+*.tb        # some tools use .tb for testbench output
+*.bin       # generic binaries
+*.exe       # windows executables
+*.o         # object files
+*.vvp       # iverilog compiled simulation output (like adder_tb)
+
+# Backup files
+*~
+*.bak
+
+# GTKWave settings
+*.sav
+
+# VSCode / IDE metadata (if using)
+.vscode/
