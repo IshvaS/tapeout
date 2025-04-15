@@ -14,10 +14,10 @@ A MUX selects between two inputs based on a select signal.
 
 | Port | Width | Description  |
 | ---- | ----- | ------------ |
-| a    | 1-bit | First input  |
-| b    | 1-bit | Second input |
+| a    | 4-bit | First input  |
+| b    | 4-bit | Second input |
 | sel  | 1-bit | Select line  |
-| out  | 1-bit | Output       |
+| out  | 4-bit | Output       |
 
 ---
 
