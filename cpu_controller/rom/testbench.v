@@ -9,8 +9,8 @@ rom uut (
 );
 
 initial begin
-    addr = 0;
     $monitor("Addr: %b Out: %b", addr, out);
+    addr = 0;#10;
     addr = 1;#10;
     addr = 2;#10;
     addr = 3;#10;
