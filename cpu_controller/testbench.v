@@ -59,7 +59,7 @@ initial begin
     #(CLK_PERIOD);
     $display("Count: %d | Reg: %b | ALU: %b | ROM: %b", pc_out, reg_out, alu_out, rom_out);
 
-    alu_in_data = 4'b1000;
+    alu_in_data = 4'b0010;
     #(CLK_PERIOD);
     $display("Count: %d | Reg: %b | ALU: %b | ROM: %b", pc_out, reg_out, alu_out, rom_out);
 
