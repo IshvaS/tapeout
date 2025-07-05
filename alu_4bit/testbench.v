@@ -6,14 +6,23 @@ module alu_tb;
     reg [1:0] sel;
     wire [3:0] out;
     wire carry_out;
+    reg [1023:0] vcdfile;
 
-    alu uut (
+    alu uut(
         .a(a),
         .b(b),
         .sel(sel),
         .out(out),
         .carry_out(carry_out)
     );
+
+    initial begin
+        if (!$value$plusargs("vcd=%s", vcdfile)) begin
+            vcdfile = "wave.vcd";
+        end
+        $dumpfile(vcdfile);
+        $dumpvars(0,alu_tb);
+    end
 
     initial begin
         a = 0; b = 0; sel = 2'b00;
