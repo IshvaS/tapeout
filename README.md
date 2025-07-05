@@ -49,9 +49,3 @@ This repository emphasizes:
 - Reusable components
 - Instruction-driven CPU architecture
 - Preparation for ASIC or FPGA synthesis
-
----
-
-## Author
-
-Daniel Gabai — Electrical and Computer Engineering Major
