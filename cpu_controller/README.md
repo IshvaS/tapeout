@@ -67,21 +67,23 @@ It connects the CPU core to external 8-bit input/output buses and provides CPU s
 
 ### File: `tt_um_4bit_cpu.v`
 
-Port     | Width  | Description                                            |
----------|--------|--------------------------------------------------------|
-ui_in    | [7:0]  | 8-bit input bus: lower 4 bits connect to `mux_in_data` |
-         |        |                  upper 4 bits to `alu_in_data`         |
-uo_out   | [7:0]  | 8-bit output bus:                                      |
-         |        | bit 7 = carry_out                                      |
-         |        | bit 6 = zero_flag                                      |
-         |        | bit 5 = overflow_flag                                  |
-         |        | bits 4 unused (0)                                      |
-         |        | bits [3:0] = ALU output                                |
-uio_in   | [7:0]  | Unused input bus (tied to zero)                        |
-uio_out  | [7:0]  | Unused output bus (driven low)                         |
-uio_oe   | [7:0]  | Output enable (driven low)                             |
-clk      | 1-bit  | Clock signal                                           |
-rst_n    | 1-bit  | Active-low reset signal                                |
+| Port    | Width  | Description                                           |
+|---------|--------|-------------------------------------------------------|
+| ui_in   | [7:0]  | 8-bit input bus:                                      |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;lower 4 bits connect to `mux_in_data`  |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;upper 4 bits connect to `alu_in_data`  |
+| uo_out  | [7:0]  | 8-bit output bus:                                    |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;bit 7 = `carry_out`          |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;bit 6 = `zero_flag`          |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;bit 5 = `overflow_flag`      |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;bit 4 = unused (0)            |
+|         |        | &nbsp;&nbsp;&nbsp;&nbsp;bits [3:0] = ALU output      |
+| uio_in  | [7:0]  | Unused input bus (tied to zero)                      |
+| uio_out | [7:0]  | Unused output bus (driven low)                        |
+| uio_oe  | [7:0]  | Output enable (driven low)                            |
+| clk     | 1-bit  | Clock signal                                         |
+| rst_n   | 1-bit  | Active-low reset signal                              |
+
 
 ---
 
