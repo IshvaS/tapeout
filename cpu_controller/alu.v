@@ -3,23 +3,43 @@ module alu (
     input [1:0] sel,
     output reg [3:0] out,
     output reg carry_out,
-    output reg zero_flag   // Make zero_flag reg
+    output zero_flag,
+    output reg overflow_flag
 );
 
-    always @(*) begin
-        case (sel)
-            2'b00: {carry_out, out} = {1'b0, a & b}; // AND
-            2'b01: {carry_out, out} = {1'b0, a | b}; // OR
-            2'b10: {carry_out, out} = {1'b0, a ^ b}; // XOR
-            2'b11: {carry_out, out} = a + b;         // ADD
-            default: {carry_out, out} = 5'b0;
-        endcase
+    reg [4:0] sum;
 
-        // Zero flag calculation inside the always block
-        if (out == 4'b0000)
-            zero_flag = 1'b1;
-        else
-            zero_flag = 1'b0;
+    always @(*) begin
+        carry_out = 0;
+        overflow_flag = 0;
+        sum = 5'b0;
+        out = 4'b0;
+
+        case (sel)
+            2'b00: begin
+                out = a & b;
+            end
+            2'b01: begin
+                out = a | b;
+            end
+            2'b10: begin
+                out = a ^ b;
+            end
+            2'b11: begin
+                sum = a + b;
+                out = sum[3:0];
+                carry_out = sum[4];
+                // Overflow for signed 4-bit add: carry into MSB differs from carry out of MSB
+                overflow_flag = (~a[3] & ~b[3] & out[3]) | (a[3] & b[3] & ~out[3]);
+            end
+            default: begin
+                out = 4'b0;
+                carry_out = 0;
+                overflow_flag = 0;
+            end
+        endcase
     end
+
+    assign zero_flag = (out == 4'b0000);
 
 endmodule

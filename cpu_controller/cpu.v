@@ -2,6 +2,8 @@ module cpu (
     input [3:0] mux_in_data, alu_in_data,
     input clk, rstn,
     output carry_out,
+    output zero_flag,           // NEW
+    output overflow_flag,       // NEW
     output [3:0] rom_out, alu_out, reg_out,
     output [2:0] pc_out
 );
@@ -30,7 +32,7 @@ module cpu (
     assign mux_sel = rom_instruction[1];
     assign load    = rom_instruction[0];
 
-    // Datapath (Register + MUX + ALU)
+    // Datapath (MUX + Register + ALU)
     mux mux_inst (
         .a(mux_in_data),
         .b(alu_result),
@@ -51,7 +53,9 @@ module cpu (
         .b(alu_in_data),
         .sel(alu_sel),
         .out(alu_result),
-        .carry_out(carry_out)
+        .carry_out(carry_out),
+        .zero_flag(zero_flag),          // connected here
+        .overflow_flag(overflow_flag)   // connected here
     );
 
     // Outputs for observation
