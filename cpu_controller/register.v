@@ -8,7 +8,7 @@ module register (
         q = 4'b0000;
     end
 
-    always @(posedge clk) begin
+    always @(posedge clk or negedge rstn) begin
         if (!rstn)
             q <= 4'b0000;      // Reset takes highest priority
         else if (load)
