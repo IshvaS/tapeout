@@ -67,7 +67,7 @@ It connects the CPU core to external 8-bit input/output buses and provides CPU s
 
 ### File: `tt_um_4bit_cpu.v`
 
-Port     | Width | Description
+Port     | Width  | Description
 ---------|--------|-----------------------------
 ui_in    | [7:0]  | 8-bit input bus: lower 4 bits connect to `mux_in_data`, upper 4 bits to `alu_in_data`
 uo_out   | [7:0]  | 8-bit output bus:
