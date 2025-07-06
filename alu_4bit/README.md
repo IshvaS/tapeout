@@ -1,6 +1,6 @@
-**4-Bit ALU (Verilog)**
+# 4-Bit ALU (Verilog)
 
-**Overview**  
+## Overview ##  
 This project implements a 4-bit Arithmetic Logic Unit (ALU) in Verilog.
 
 The ALU performs logic and arithmetic operations based on a 2-bit select signal.  
@@ -8,9 +8,9 @@ This module demonstrates multi-operation combinational logic design using Verilo
 
 ---
 
-**Module Description**
+## Module Description ##
 
-File: alu.v
+### File: alu.v
 
 Port      | Width | Description  
 ----------|--------|-------------------------  
@@ -24,7 +24,7 @@ overflow_flag | 1-bit | Overflow flag for signed addition
 
 ---
 
-**Operations**
+## Operations ##
 
 sel | Operation | Description  
 ----|-----------|------------------------------  
@@ -35,7 +35,7 @@ sel | Operation | Description
 
 ---
 
-**Example Test Cases**
+## Example Test Cases ##
 
 a      | b      | sel | Expected out | Expected carry_out | zero_flag | overflow_flag  
 -------|--------|-----|--------------|--------------------|-----------|--------------  
@@ -48,7 +48,7 @@ a      | b      | sel | Expected out | Expected carry_out | zero_flag | overflow
 
 ---
 
-**Notes**  
+## Notes ##  
 - Overflow flag indicates signed addition overflow.  
 - Zero flag is set when output is zero.  
 - Carry out indicates unsigned addition carry.  
