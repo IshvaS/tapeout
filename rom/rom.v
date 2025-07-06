@@ -2,7 +2,7 @@ module rom (
     input [2:0] addr,
     output reg [3:0] out
 );
-
+    //bits 1234 - alu_sel=12, mux_sel=3, load=4
     always @(*) begin
         case (addr)
             3'b000: out = 4'b0001; // AND   alu_sel=00, mux_sel=0, load=1
