@@ -1,57 +1,56 @@
-# 4-Bit ALU (Verilog)
+4-Bit ALU (Verilog)
 
-## Overview
-
+Overview
 This project implements a 4-bit Arithmetic Logic Unit (ALU) in Verilog.
 
-The ALU performs logic and arithmetic operations based on a 2-bit select signal. This module demonstrates multi-operation combinational logic design using Verilog.
+The ALU performs logic and arithmetic operations based on a 2-bit select signal. 
+This module demonstrates multi-operation combinational logic design using Verilog.
 
 ---
 
-## Module Description
+Module Description
 
-### File: `alu.v`
+File: alu.v
 
-| Port      | Width | Description                       |
-| --------- | ----- | --------------------------------- |
-| a         | [3:0] | First input operand               |
-| b         | [3:0] | Second input operand              |
-| sel       | [1:0] | Operation select                  |
-| out       | [3:0] | Operation result                  |
-| carry_out | 1-bit | Carry-out from ADD operation only |
-
----
-
-## Operations
-
-| sel | Operation | Description                   |
-| --- | --------- | ----------------------------- |
-| 00  | AND       | Bitwise AND                   |
-| 01  | OR        | Bitwise OR                    |
-| 10  | XOR       | Bitwise XOR                   |
-| 11  | ADD       | 4-bit Addition with Carry Out |
+Port      | Width | Description
+----------|--------|-------------------------
+a         | [3:0]  | First input operand
+b         | [3:0]  | Second input operand
+sel       | [1:0]  | Operation select
+out       | [3:0]  | Operation result
+carry_out | 1-bit  | Carry-out from ADD operation only
+zero_flag | 1-bit  | High when output is zero
+overflow_flag | 1-bit | Overflow flag for signed addition
 
 ---
 
-## Testbench
+Operations
 
-### File: `testbench.v`
-
-The testbench applies a sequence of test cases to verify all ALU operations.
-
-Example test cases:
-
-| a       | b       | sel | Expected out | Expected carry_out |
-| ------- | ------- | --- | ------------ | ------------------ |
-| 4'b1010 | 4'b1100 | 00  | 4'b1000      | 0                  |
-| 4'b1010 | 4'b1100 | 01  | 4'b1110      | 0                  |
-| 4'b1010 | 4'b1100 | 10  | 4'b0110      | 0                  |
-| 4'b0111 | 4'b1001 | 11  | 4'b0000      | 1                  |
+sel | Operation | Description
+----|-----------|------------------------------
+00  | AND       | Bitwise AND
+01  | OR        | Bitwise OR
+10  | XOR       | Bitwise XOR
+11  | ADD       | 4-bit Addition with Carry Out, Zero and Overflow flags
 
 ---
 
-## Notes
+Example Test Cases
 
-This project demonstrates multi-operation combinational design in Verilog and shows how to implement basic ALU functionality for a CPU datapath.
+a      | b      | sel | Expected out | Expected carry_out | zero_flag | overflow_flag
+-------|--------|-----|--------------|--------------------|-----------|--------------
+1010   | 1100   | 00  | 1000         | 0                  | 0         | 0
+1010   | 1100   | 01  | 1110         | 0                  | 0         | 0
+1010   | 1100   | 10  | 0110         | 0                  | 0         | 0
+0111   | 0001   | 11  | 1000         | 0                  | 0         | 1
+1000   | 1000   | 11  | 0000         | 1                  | 1         | 1
+1111   | 0001   | 11  | 0000         | 1                  | 1         | 0
 
-It builds on previous Verilog skills and prepares for larger system-level designs.
+---
+
+Notes
+- Overflow flag indicates signed addition overflow.
+- Zero flag is set when output is zero.
+- Carry out indicates unsigned addition carry.
+- Inputs are 4-bit values; for signed operations, inputs can be treated as 2’s complement.
+- This ALU can be used as a basic building block in CPU datapaths.
