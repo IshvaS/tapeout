@@ -10,3 +10,11 @@ always @(posedge clk) begin
 end
 
 endmodule
+
+//output
+//0 - 000
+//1 - 001
+//2 - 010
+//3 - 011
+//4 - 100
+//...

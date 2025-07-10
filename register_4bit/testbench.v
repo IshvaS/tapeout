@@ -2,7 +2,7 @@
 
 module testbench;
 
-    reg clk, load;
+    reg clk, load, rst;
     reg [3:0] d;
     wire [3:0] q;
     reg [1023:0] vcdfile;
@@ -11,7 +11,8 @@ module testbench;
         .clk(clk),
         .load(load),
         .d(d),
-        .q(q)
+        .q(q),
+        .rst(rst)
     );
 
     initial begin
@@ -28,7 +29,7 @@ module testbench;
     end
 
     initial begin
-
+        rst = 1;
         load = 0; d = 4'd0; #10;
 
         load = 1; d = 4'd5; #10; // Load 5 into register
@@ -37,6 +38,10 @@ module testbench;
         load = 0; d = 4'd9; #10; // Should not load
         $display("Register: %d", q); // 5
 
+        load = 0; rst = 0; #10;
+        $display("Register: %d", q);
+
+        rst = 1;
         load = 1; d = 4'd12; #10; // Loads 12
         $display("Register: %d", q); // 12
 
